@@ -24,6 +24,8 @@ class MainWindow(QMainWindow):
 
         self.tabs.setDocumentMode(True)
 
+        self.setWindowIcon(QIcon('icon.png'))
+
         self.tabs.tabBarDoubleClicked.connect(self.tab_open_doubleclick)
 
         self.tabs.currentChanged.connect(self.current_tab_changed)
@@ -86,7 +88,7 @@ class MainWindow(QMainWindow):
         data = json.load(response)
         country = data['country']
         if country == "Russia" or "Belarus":
-            self.add_new_tab(QUrl('http://yandex.ru'), 'Homepage')
+            self.add_new_tab(QUrl('http://google.ru'), 'Homepage')
         else:
             self.add_new_tab(QUrl('http://google.com'), 'Homepage')
 
@@ -96,14 +98,13 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Browui")
 
     def add_new_tab(self, qurl=None, label="Blank"):
-
         if qurl is None:
             url = 'http://ipinfo.io/json'
             response = urlopen(url)
             data = json.load(response)
             country = data['country']
             if country == "Russia" or "Belarus":
-                qurl = QUrl('http://yandex.ru')
+                qurl = QUrl('http://google.ru')
             else:
                 qurl = QUrl('http://google.com')
 
@@ -153,7 +154,7 @@ class MainWindow(QMainWindow):
         data = json.load(response)
         country = data['country']
         if country == "Russia" or "Belarus":
-            self.tabs.currentWidget().setUrl(QUrl("http://yandex.ru"))
+            self.tabs.currentWidget().setUrl(QUrl("http://www.google.ru"))
         else:
             self.tabs.currentWidget().setUrl(QUrl("http://www.google.com"))
     def navigate_to_url(self):
